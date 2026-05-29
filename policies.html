@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Policies | NoCashVends</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="legal.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="NoCashVends logo" />
+        <span>NoCashVends</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html#products">Products</a>
+        <a href="terms.html">Terms</a>
+        <a href="policies.html">Policies</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Policies</h1>
+    <p class="meta">Last updated: 29 May 2026</p>
+    <p>We keep our policies transparent and fair. Use the tabs to review each policy or open the standalone pages below.</p>
+    <div class="quick-links">
+      <a href="refund-policy.html">Refund Policy</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="return-policy.html">Return Policy</a>
+    </div>
+
+    <div class="card">
+      <div class="tab-list" role="tablist" aria-label="Policies">
+        <button class="tab is-active" type="button" role="tab" aria-selected="true" data-tab="refund">Refund Policy</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-tab="privacy">Privacy Policy</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-tab="return">Return Policy</button>
+      </div>
+
+      <section class="policy-panel" id="refund" role="tabpanel">
+        <h2>Refund Policy</h2>
+        <p>We issue refunds when a service fault is confirmed on our side. Our goal is to fix issues quickly, but if we cannot, we make it right.</p>
+        <ul>
+          <li>Eligible cases include service outages caused by us, duplicate billing, or failure to deliver agreed features.</li>
+          <li>Contact us within 14 days of the issue with your invoice or payment reference.</li>
+          <li>We review requests within 5 business days and confirm next steps.</li>
+          <li>Approved refunds are processed to the original payment method within 7–14 business days.</li>
+        </ul>
+        <p>Refunds do not apply to issues caused by customer network outages, misuse, or third-party providers outside our control.</p>
+      </section>
+
+      <section class="policy-panel" id="privacy" role="tabpanel" hidden>
+        <h2>Privacy Policy</h2>
+        <p>We collect only the information needed to deliver and support our services.</p>
+        <ul>
+          <li><strong>Data we collect:</strong> contact details, demo requests, service usage analytics, and billing information.</li>
+          <li><strong>How we use it:</strong> to provide services, improve performance, and respond to support requests.</li>
+          <li><strong>Sharing:</strong> we do not sell personal data. We only share with trusted processors (payment or hosting providers) when required to deliver the service.</li>
+          <li><strong>Security:</strong> we use standard safeguards to protect data, including access controls and encryption where appropriate.</li>
+          <li><strong>Retention:</strong> data is kept only as long as necessary for operational, legal, or billing needs.</li>
+        </ul>
+        <p>For privacy questions or data requests, email <a href="mailto:nocashvends@gmail.com">nocashvends@gmail.com</a>.</p>
+      </section>
+
+      <section class="policy-panel" id="return" role="tabpanel" hidden>
+        <h2>Return Policy</h2>
+        <p>We do not accept returns. Our products are software services and custom deployments, so returns are not applicable.</p>
+        <ul>
+          <li>If a fault is confirmed on our side, we will repair the issue or provide a refund in line with the Refund Policy.</li>
+          <li>For any hardware or kiosk arrangements, service and replacement terms are handled through the signed agreement.</li>
+        </ul>
+        <p>We always aim to resolve issues fairly and quickly.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 NoCashVends. All rights reserved.</span>
+      <span><a href="index.html">Back to home</a></span>
+    </div>
+  </footer>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll('[data-tab]'));
+    const panels = Array.from(document.querySelectorAll('.policy-panel'));
+
+    const activate = (id) => {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.tab === id;
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-selected', String(isActive));
+      });
+      panels.forEach((panel) => {
+        panel.hidden = panel.id !== id;
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const id = tab.dataset.tab;
+        activate(id);
+        history.replaceState(null, '', `#${id}`);
+      });
+    });
+
+    const initial = window.location.hash.replace('#', '');
+    if (initial && panels.some((panel) => panel.id === initial)) {
+      activate(initial);
+    }
+  </script>
+</body>
+</html>
